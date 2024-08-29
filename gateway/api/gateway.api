@@ -1,0 +1,22 @@
+syntax = "v1"
+
+import "demo.api"
+import "shorturl.api"
+
+type UserInfoRequest {
+	User     string `json:"user"`
+	Password string `json:"password"`
+}
+
+type gatewayResponse {
+	Data interface{} `json:"data"`
+	Flag bool        `json:"flag"`
+	Msg  string      `json:"msg"`
+	Code int         `json:"code"`
+}
+
+service gateway {
+	@handler Login
+	post /api/user/login (UserInfoRequest) returns (gatewayResponse)
+}
+

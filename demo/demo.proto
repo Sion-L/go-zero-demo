@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package demo;
+
+option go_package = "./demo";
+
+message demoReq{
+  string Name = 1;
+}
+
+message demoRes{
+  string Message = 1;
+}
+
+service  myDemo{
+  rpc demo(demoReq) returns(demoRes);
+}

@@ -1,0 +1,33 @@
+syntax = "v1"
+
+type (
+	expandReq {
+		shorten string `form:"shorten"`
+	}
+	expandResp {
+		url string `json:"url"`
+	}
+)
+
+type (
+	shortenReq {
+		url string `form:"url"`
+	}
+	shortenResp {
+		shorten string `json:"shorten"`
+	}
+)
+
+@server(
+	group: shorturl
+	prefix: api/v1/shorturl
+)
+
+service gateway {
+	@handler ShortenHandler
+	get /shorten (shortenReq) returns (shortenResp)
+
+	@handler ExpandHandler
+	get /expand (expandReq) returns (expandResp)
+}
+

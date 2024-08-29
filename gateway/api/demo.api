@@ -1,0 +1,21 @@
+syntax = "v1"
+
+type (
+	demoReq {
+		Name string `path:"name,options=you|me"`
+	}
+	demoRes {
+		Message string `json:"message"`
+	}
+)
+
+@server(
+	group: demo
+	prefix: api/v1/demo
+)
+
+service gateway {
+	@handler DemoHandler
+	get /from/:name (demoReq) returns (demoRes)
+}
+

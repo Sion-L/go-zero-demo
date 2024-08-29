@@ -1,0 +1,15 @@
+Name: gateway
+Host: 0.0.0.0
+Port: 8888
+
+Transform:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: transform.rpc
+
+Demo:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: demo.rpc
